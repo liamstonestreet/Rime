@@ -75,6 +75,7 @@ static class RiceFont {
  }
  public static void Refresh(){
   var found=new System.Collections.Generic.Dictionary<string,FontFamily>(StringComparer.OrdinalIgnoreCase);
+  try{var bundled=Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"Fonts");if(Directory.Exists(bundled))foreach(var family in Fonts.GetFontFamilies(new Uri(bundled+Path.DirectorySeparatorChar)))foreach(var name in family.FamilyNames.Values)found[name]=family;}catch{}
   try{if(Directory.Exists(Folder))foreach(var dir in new[]{Folder}.Concat(Directory.GetDirectories(Folder,"*",SearchOption.AllDirectories)))try{foreach(var f in Fonts.GetFontFamilies(new Uri(dir+Path.DirectorySeparatorChar)))foreach(var name in f.FamilyNames.Values)if(!found.ContainsKey(name))found[name]=f;}catch{}}catch{}
   revision=AppearanceFile.Get("fontRevision",0);families=found;lastName=null;current=null;webName=null;webData=null;
  }

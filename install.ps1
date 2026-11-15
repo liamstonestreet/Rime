@@ -210,6 +210,7 @@ if (-not (Test-Path (Join-Path $PackDir 'workspaces.json')) -and (Test-Path $old
   Note 'Migrated workspace-apps.json into workspaces.json'
 }
 $settings = @{
+  'bar-appearance.json' = 'presets\appearance.json'
   'workspaces.json' = 'workspaces.json'
   'rice-widgets.json' = 'public\rice-widgets.json'; 'control-center-layout.json' = 'control-center\control-center-layout.json'
   'launch-apps.json' = 'spotlight\launch-apps.json'; 'focus-mode.json' = 'control-center\focus-mode.json'

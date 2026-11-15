@@ -8,6 +8,7 @@ nord-rice is MIT licensed (see `LICENSE`). It includes or uses the following.
 |---|---|---|
 | Nord theme for Zebar, by Dang Quang | Base of the bar (`src/`), https://github.com/quangbhdang/zebar-nord | MIT (credited in `LICENSE`) |
 | Rubik font, by The Rubik Project Authors | `public/fonts/`, `control-center/Fonts/` | SIL Open Font License 1.1, see `licenses/Rubik-OFL.txt` |
+| Sora font, by The Sora Project Authors | `control-center/Fonts/Sora-Regular.ttf` | SIL Open Font License 1.1, see `licenses/Sora-OFL.txt` |
 
 ## Downloaded by `install.ps1` (not stored in this repository)
 

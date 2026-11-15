@@ -1,5 +1,11 @@
 # Rime
 
+![Rime desktop with wallpaper-matched Zebar colors](resources/screenshots/desktop.png)
+
+![Rime Configure tab with frosted surfaces and wallpaper-derived colors](resources/screenshots/configure.png)
+
+![Rime Showcase wallpaper picker with category navigation](resources/screenshots/wallpapers.png)
+
 A wallpaper-driven Windows rice built around **GlazeWM**, **Zebar**, and custom native helpers. Frosted surfaces, coordinated colors, workspace tools, and everyday controls in one configurable desktop.
 
 Inspired by the feel of Caelestia, adapted to Windows. Rime is a customization layer, not a replacement for the Windows shell.
@@ -38,6 +44,8 @@ Re-run the bootstrap to update, or run `install.ps1` from an existing local sour
 
 ## Make it yours
 
+Fresh installs start with Sora, wallpaper-matched frost, blur 45, brightness 30, transparency 40, grain 10, contrast 70, roundedness 135%, and Fade for CC and Notifications. Existing installs keep their saved appearance settings.
+
 1. **Open Control Center:** hover the bar's clock to preview it, or click to pin it open.
 2. **Configure the bar:** in **Configure → Widgets & layout**, choose what appears and where, then Apply.
 3. **Choose a look:** adjust fonts, wallpaper colors, transparency, blur, contrast, grain, rounded corners, and the screen frame. CC width and maximum height are editable.
@@ -68,9 +76,6 @@ GlazeWM owns the workspaces and launches the recovery runtime. Start GlazeWM to 
 
 CC and Notifications each have independent **Slide** or **Fade** opening/closing styles. Panel height follows the selected monitor and configured limit; longer pages scroll.
 
-*Interface preview rendered from the current code with sample device/app data. Live colors follow your wallpaper and configuration.*
-
-<img src="resources/screenshots/audio.png" alt="Rime Audio tab with media controls, audio ribbons, volume, balance and device settings" width="760">
 
 ### Spotlight
 
@@ -89,9 +94,6 @@ Use `/help` to explore commands. `/openall` launches the list you configure in C
 
 File-name search covers Desktop, Documents, and Downloads with a bounded background index; it is not a full-disk or file-content search. [Search details and keyboard controls](docs/spotlight.md).
 
-*Rendered interface preview showing the calculator provider.*
-
-<img src="resources/screenshots/spotlight.png" alt="Rime Spotlight calculating sqrt(144) plus 8 and offering to copy the result" width="760">
 
 ### Workspace and wallpaper indicators
 

@@ -1,0 +1,5 @@
+{
+  "apps": ["Helium", "Spotify", "Signal", "Discord", "ChatGPT"],
+  "settleSeconds": 15,
+  "processNames": { "Helium": "chrome", "Spotify": "Spotify", "Signal": "Signal", "Discord": "Discord", "ChatGPT": "ChatGPT" }
+}

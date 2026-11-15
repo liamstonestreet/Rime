@@ -1,0 +1,5 @@
+$ErrorActionPreference = 'Stop'
+$framework = Join-Path $env:WINDIR 'Microsoft.NET\Framework64\v4.0.30319'
+$refs = @('WindowsBase.dll','PresentationCore.dll','PresentationFramework.dll') | ForEach-Object { '/reference:' + (Join-Path $framework ('WPF\' + $_)) }
+& (Join-Path $framework 'csc.exe') /nologo /target:winexe /platform:x64 /optimize+ /reference:System.Xaml.dll /reference:System.Web.Extensions.dll /reference:System.Net.Http.dll @refs ("/out:" + (Join-Path $PSScriptRoot 'NordWorkspaceIndicator.exe')) (Join-Path $PSScriptRoot '..\shared\GameWindows.cs') (Join-Path $PSScriptRoot 'NordWorkspaceIndicator.cs') (Join-Path $PSScriptRoot 'IndicatorVariants.cs') (Join-Path $PSScriptRoot 'IndicatorVariantChecks.cs') (Join-Path $PSScriptRoot '..\shared\FocusTheme.cs') (Join-Path $PSScriptRoot '..\shared\IndicatorKeys.cs') (Join-Path $PSScriptRoot '..\shared\WallpaperPalette.cs') (Join-Path $PSScriptRoot '..\shared\ThemeTransition.cs') (Join-Path $PSScriptRoot '..\shared\FrostFile.cs') (Join-Path $PSScriptRoot '..\shared\RiceLook.cs')
+if ($LASTEXITCODE -ne 0) { throw 'Workspace indicator build failed.' }

@@ -1,0 +1,275 @@
+/* Surface styling only; native window height/docking live in zpack.json. */
+.nord-frost-bar {
+  box-sizing: border-box;
+  width: 100%;
+  height: 50px !important;
+  margin: 0 !important;
+  padding: 4px 8px;
+  align-items: center;
+  background: color-mix(in srgb, var(--nord-0) calc(var(--bar-opacity) * 100%), transparent);
+  border: none;
+  box-shadow: none;
+}
+.nord-frost-bar .nord-widget-group {
+  height: 38px;
+  background: color-mix(in srgb, var(--nord-0) 22%, transparent);
+  border-color: color-mix(in srgb, var(--nord-4) 9%, transparent);
+}
+.workspace-rules-button {
+  border: 1px solid transparent;
+  transition: background calc(140ms * var(--motion-time, 1)) ease, color calc(140ms * var(--motion-time, 1)) ease;
+}
+.workspace-rules-button:focus-visible { outline: 2px solid var(--nord-8); outline-offset: 1px; }
+@media (prefers-reduced-motion: reduce) {
+  .workspace-rules-button, .workspace-rules-button svg { transition: none; }
+}
+
+/* Animate the circle inside its stationary hit target. */
+.nord-workspace-button { cursor: pointer; }
+.nord-workspace-button > div {
+  transform: translateY(0) scale(1);
+  transition: transform calc(180ms * var(--motion-time, 1)) var(--motion-ease, cubic-bezier(.2,.8,.2,1)), filter calc(180ms * var(--motion-time, 1)) ease;
+}
+.nord-workspace-button:hover > div,
+.nord-workspace-button:focus-visible > div {
+  transform: translateY(-1px) scale(1.10);
+  filter: brightness(1.12);
+}
+.nord-workspace-button:active > div { transform: translateY(0) scale(.95); }
+.nord-workspace-button:focus-visible { outline: 1px solid var(--nord-8); outline-offset: 1px; }
+@media (prefers-reduced-motion: reduce) {
+  .nord-workspace-button > div { transition: none; }
+  .nord-workspace-button:hover > div,
+  .nord-workspace-button:focus-visible > div,
+  .nord-workspace-button:active > div { transform: none; }
+}
+
+.nord-search-button {
+  height: 32px; display: flex; align-items: center; gap: 7px;
+  padding: 0 12px; margin-left: 2px; border-radius:calc(20px * var(--round, 1));
+  border: 1px solid color-mix(in srgb, var(--nord-8) 26%, transparent);
+  background: color-mix(in srgb, var(--nord-9) 10%, transparent); color: var(--nord-8);
+  font: inherit; font-size: 12px; cursor: pointer;
+  transition: transform calc(150ms * var(--motion-time, 1)) var(--motion-ease, ease), background calc(150ms * var(--motion-time, 1)) ease;
+}
+.nord-search-button:hover { transform: scale(1.035); background: color-mix(in srgb, var(--nord-9) 20%, transparent); }
+.nord-search-button:active { transform: scale(.98); }
+.nord-search-button:focus-visible { outline: 1px solid var(--nord-8); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .nord-search-button { transition: none; } }
+
+/* Directly editable search field in the bar. */
+.nord-search-button { width: clamp(200px, 19vw, 360px); cursor: text; flex-shrink: 1; }
+.nord-search-button input { width: 100%; min-width: 0; background: transparent; border: 0; outline: 0; color: var(--nord-4); font: inherit; cursor: text; }
+.nord-search-button input::placeholder { color: var(--nord-8); opacity: .65; }
+.nord-search-button svg { flex-shrink: 0; }
+.nord-search-button:focus-within { border-color: color-mix(in srgb, var(--nord-8) 70%, transparent); background: color-mix(in srgb, var(--nord-9) 18%, transparent); }
+.nord-search-button:hover, .nord-search-button:active { transform: none; }
+.nord-tray {display:flex;align-items:center;justify-content:center;width:32px;height:32px;border:1px solid color-mix(in srgb, var(--nord-8) 25%, transparent);border-radius:calc(20px * var(--round, 1));color:var(--nord-7);background:color-mix(in srgb, var(--nord-7) 10%, transparent);cursor:pointer;transition:transform calc(140ms * var(--motion-time, 1)) var(--motion-ease, ease),background calc(140ms * var(--motion-time, 1)) ease}.nord-tray:hover {transform:scale(1.08);background:color-mix(in srgb, var(--nord-7) 19%, transparent)}.nord-tray:active {transform:scale(.96)}
+.nord-frost-bar { height:50px !important; } .nord-clock-button {cursor:pointer;pointer-events:auto;border:1px solid color-mix(in srgb, var(--nord-8) 25%, transparent);font:inherit}.nord-clock-button:hover {background-color:color-mix(in srgb, var(--nord-8) 15%, transparent)}.nord-clock-button:focus-visible {outline:2px solid var(--nord-8);outline-offset:2px}
+
+.nord-frost-bar { border: 0 !important; box-shadow: none !important; outline: none !important; }
+.nord-frost-bar :where(button,input,select,.player-track,.player-detail,.font-mono) {font-family: var(--rice-font, "Rubik", sans-serif) !important;}
+
+.nord-power {display:flex;align-items:center;justify-content:center;width:32px;height:32px;flex-shrink:0;border:1px solid color-mix(in srgb, var(--nord-8) 25%, transparent);border-radius:calc(20px * var(--round, 1));background:color-mix(in srgb, var(--nord-9) 10%, transparent);color:var(--muted);cursor:pointer;transition:transform calc(140ms * var(--motion-time, 1)) var(--motion-ease, ease),background calc(140ms * var(--motion-time, 1)) ease,color calc(140ms * var(--motion-time, 1)) ease}.nord-power:hover {transform:scale(1.08);background:color-mix(in srgb, var(--nord-11) 16%, transparent);color:var(--danger-soft)}.nord-power:active {transform:scale(.96)}.nord-power:focus-visible {outline:2px solid var(--nord-8);outline-offset:2px}
+
+/* Stable search endpoint; the task strip owns the exact interval up to the clock. */
+.nord-frost-bar {position:relative;--search-right:34vw;}
+.nord-frost-bar > .nord-column.justify-start {width:calc(var(--search-right) - 8px);min-width:0;}
+.nord-frost-bar > .nord-column.justify-start > div {width:100%;min-width:0;}
+.nord-frost-bar > .nord-column.justify-start .nord-widget-group {width:100%;min-width:0;}
+.nord-frost-bar .nord-workspaces {min-width:0;overflow-x:auto;justify-content:flex-start;scrollbar-width:none;}
+.nord-workspaces > button {flex-shrink:0;}
+.nord-frost-bar .nord-search-button {width:clamp(150px,12vw,240px);flex-shrink:0;margin-left:auto;}
+.nord-frost-bar > .nord-column.justify-center {position:absolute;left:50%;transform:translateX(-50%);}
+.nord-frost-bar > .nord-column.justify-end {position:absolute;right:8px;}
+.nord-workspace-tasks {position:absolute;top:0;height:50px;display:flex;align-items:center;justify-content:center;padding:0 12px;box-sizing:border-box;pointer-events:none;}
+.nord-task-icons {position:relative;display:flex;gap:6px;max-width:100%;overflow-x:auto;scrollbar-width:none;pointer-events:auto;padding:3px;}
+.nord-task-slot {position:relative;flex:0 0 30px;width:30px;height:30px;}
+.nord-task-slot.is-task-ghost {pointer-events:none;}
+.nord-task-icon {width:30px;height:30px;flex:0 0 30px;display:grid;place-items:center;border:1px solid color-mix(in srgb, var(--nord-9) 33%, transparent);border-radius:calc(20px * var(--round, 1));background:color-mix(in srgb, var(--nord-9) 7%, transparent);color:var(--nord-4);cursor:pointer;transition:background calc(120ms * var(--motion-time, 1)) ease,border-color calc(120ms * var(--motion-time, 1)) ease;}
+.nord-task-icon img {width:19px;height:19px;object-fit:contain;transition:transform calc(120ms * var(--motion-time, 1)) var(--motion-ease, ease);}
+.nord-task-icon:hover {background:color-mix(in srgb, var(--nord-9) 19%, transparent);border-color:var(--nord-8);}.nord-task-icon:hover img{transform:scale(1.1);}.nord-task-icon:active img{transform:scale(.94);}.nord-task-icon.is-focused{border-color:var(--nord-8);background:color-mix(in srgb, var(--nord-8) 15%, transparent);}.nord-task-icon:focus-visible{outline:2px solid var(--nord-8);outline-offset:1px;}
+
+/* Bottom edge: same 3px var(--edge) as the Alt workspace indicator outline.
+   Pinned to the window's real bottom (not the 50px grid) so it lines up exactly
+   with the edge the control center draws when it opens. Chromium snaps it to 3 whole rows at
+   100%/125% (rows 59-61 of the 62px bar); NordControlCenter.SetLine draws the same 3 rows. */
+/* With a screen frame (--frame, --frame-radius from appearance.ts) the line ends in two corners that curve
+   down into the frame's line: the top of a ring whose rest the frame draws below the bar (same center,
+   radius and width). The corners are drawn inside the line's own strip, so they share its exact rows.
+   Width 3px: Chromium snaps it to floor(3 x scale) rows, like the control center's and frame's lines;
+   --edge-line is that width exactly, for the ring. Each corner overlaps the line by 1px (the ring carries
+   on straight there) so no seam opens where fractional layer edges round apart. The ring's center is placed from the strip's
+   top (its 3px rounds to whole rows there, so 100% would sit up to a pixel low).
+   Paint in physical-pixel coordinates and scale back, avoiding fractional background-tile rounding.
+   The native bar bounds supply the bottom-edge correction at mixed display scales. The invisible
+   continuation below the bar supplies a complete corner/side to the blur before window clipping. */
+.nord-frost-bar::after {content:"";position:fixed;left:0;width:calc(100% * var(--D));bottom:var(--edge-source-bottom,calc(-1 * (var(--frame-radius,0px) + 20px) + var(--edge-snap,0px)));height:var(--edge-source-height,calc(var(--W) + var(--R) + 20px * var(--D)));pointer-events:none;z-index:1;transform:scale(calc(1 / var(--D)));transform-origin:bottom left;
+  --D:var(--edge-dpr,1);--R:calc(var(--frame-radius,0px) * var(--D));--W:calc(var(--edge-line,3px) * var(--D));--P:var(--W);--side:calc(var(--frame,0px) * var(--D) + var(--R));
+  background:
+    radial-gradient(circle at calc(100% - 1px) calc(var(--W) + var(--R)),transparent calc(var(--R) - .3px),var(--edge-a,var(--edge)) calc(var(--R) + .3px),var(--edge-a,var(--edge)) calc(var(--R) + var(--W) - .3px),transparent calc(var(--R) + var(--W) + .3px)) 0 0/calc(var(--side) + 1px) calc(var(--P) + var(--R)) no-repeat,
+    radial-gradient(circle at 1px calc(var(--W) + var(--R)),transparent calc(var(--R) - .3px),var(--edge-b,var(--edge)) calc(var(--R) + .3px),var(--edge-b,var(--edge)) calc(var(--R) + var(--W) - .3px),transparent calc(var(--R) + var(--W) + .3px)) 100% 0/calc(var(--side) + 1px) calc(var(--P) + var(--R)) no-repeat,
+    linear-gradient(var(--edge-a,var(--edge)),var(--edge-a,var(--edge))) calc(var(--frame,0px) * var(--D) - var(--W)) calc(var(--W) + var(--R) - 1px)/var(--P) calc(20px * var(--D) + 1px) no-repeat,
+    linear-gradient(var(--edge-b,var(--edge)),var(--edge-b,var(--edge))) calc(100% - var(--frame,0px) * var(--D) + var(--P)) calc(var(--W) + var(--R) - 1px)/var(--P) calc(20px * var(--D) + 1px) no-repeat;}
+.nord-frost-bar {isolation:isolate;}
+/* Keep the straight line out of the transformed corner texture. Fractional-DPI
+   resampling softened its core even when summed alpha equalled the right width. */
+.nord-horizontal-edge {position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:1;--inset:calc(var(--frame,0px) + var(--frame-radius,0px));overflow:visible;}
+.nord-horizontal-edge rect {x:var(--inset);y:calc(100% - var(--edge-snap,0px) - var(--edge-line,3px));width:calc(100% - 2 * var(--inset));height:var(--edge-line,3px);fill:url(#nord-horizontal-gradient);shape-rendering:crispEdges;} .nord-horizontal-edge stop {stop-color:var(--edge);} html[data-edge="gradient"]:not(.locked-in) .nord-horizontal-edge stop:first-child {stop-color:var(--nord-8);} html[data-edge="gradient"]:not(.locked-in) .nord-horizontal-edge stop:last-child {stop-color:var(--nord-7);}
+html[data-edge="glow"]:not(.locked-in) .nord-horizontal-edge {filter:drop-shadow(0 0 5px color-mix(in srgb,var(--edge) 90%,transparent));}
+html[data-edge="none"]:not(.locked-in) .nord-horizontal-edge {display:none;}
+.center-gap .nord-horizontal-edge {mask-image:linear-gradient(to right,#000 var(--gap-left),transparent var(--gap-left),transparent var(--gap-right),#000 var(--gap-right));}
+/* Corner radius (Rice tab): Tailwind's fully rounded pills and circles scale with everything else. */
+.rounded-full {border-radius:calc(20px * var(--round, 1));}
+/* Motion (Rice tab): Tailwind duration utilities scale too; Off stops every transition. */
+.duration-300 {transition-duration:calc(300ms * var(--motion-time, 1));}
+html[data-motion="off"] * {transition:none !important;animation:none !important;}
+/* Frosted glass: the tint over this monitor's blurred-wallpaper strip. Lock-in keeps its opaque look. */
+html.frost:not(.locked-in) .nord-frost-bar {background:linear-gradient(color-mix(in srgb, var(--nord-0) calc(var(--bar-opacity) * 100%), transparent),color-mix(in srgb, var(--nord-0) calc(var(--bar-opacity) * 100%), transparent)),var(--frost-image) 0 0/100vw var(--frost-height) no-repeat;}
+.nord-frost-bar::before {content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:var(--grain-image,none) 0 0/var(--grain-size,128px) repeat;image-rendering:pixelated;opacity:var(--grain-opacity,0);}
+.locked-in .nord-frost-bar::before {display:none;}
+/* Edge style (Rice tab). The glow is an inner shadow on the bar, not on the line, so it survives the
+   gap the line gets under the open control center. Lock-in keeps its flat line. */
+html[data-edge="gradient"]:not(.locked-in) .nord-frost-bar::after {--edge-a:var(--nord-8);--edge-b:var(--nord-7);--edge-mid:linear-gradient(90deg,var(--nord-8),var(--nord-7));}
+/* The glow shines off the line into the bar (the window cuts off the side below), like the frame's and
+   the control center's, which shine into their own panels. */
+html[data-edge="glow"]:not(.locked-in) .nord-frost-bar::after {filter:drop-shadow(0 0 calc(5px * var(--D)) color-mix(in srgb, var(--edge) 90%, transparent));}
+html[data-edge="none"]:not(.locked-in) .nord-frost-bar::after {display:none;}
+.center-gap .nord-frost-bar::after {mask-image:linear-gradient(to right,#000 calc(var(--gap-left) * var(--D)),transparent calc(var(--gap-left) * var(--D)),transparent calc(var(--gap-right) * var(--D)),#000 calc(var(--gap-right) * var(--D)));}
+
+:root {--workspace-accent:var(--nord-9);}
+.workspace-circle{width:24px;height:24px;display:grid;place-items:center;border:2px solid var(--workspace-accent);border-radius:calc(20px * var(--round, 1));font-size:14px;font-weight:600;color:var(--workspace-accent);}
+.nord-workspace-button.focused .workspace-circle{background:var(--workspace-accent);color:var(--nord-0);}
+.workspace-rules-button{flex:0 0 32px;padding:0;}
+.workspace-rules-button svg{display:block;flex:none;}
+.nord-workspace-tasks{z-index:3;}
+
+/* Lighthouse/search/rules share the previous right anchor. */
+.nord-frost-bar .nord-direction{margin-left:auto;flex:0 0 32px;}
+.nord-frost-bar .nord-search-button{margin-left:0;}
+
+.locked-in {--workspace-accent:var(--focus-accent);--nord-8:var(--focus-accent);--nord-9:var(--focus-edge);--bg:var(--focus-background);--base:var(--focus-background);}
+.locked-in .nord-frost-bar{background:var(--focus-background);}
+.locked-in .nord-frost-bar::after{--edge-a:var(--focus-edge);--edge-b:var(--focus-edge);--edge-mid:linear-gradient(var(--focus-edge),var(--focus-edge));}
+.locked-in .nord-frost-bar .nord-widget-group{background:var(--focus-background);border-color:var(--focus-edge);}
+.locked-in .nord-frost-bar :is(button,.nord-search-button,.player-track){border-color:var(--focus-edge);color:var(--focus-accent);}
+.locked-in .nord-frost-bar :is(.nord-search-button,.nord-clock-button,.nord-task-icon,.nord-power,.nord-tray){background:var(--focus-background);}
+.locked-in .nord-workspace-button.focused .workspace-circle{color:var(--focus-background);}
+.nord-workspace-button:disabled{opacity:.22;cursor:not-allowed;}.nord-workspace-button:disabled:hover>div{transform:none;}
+
+.locked-in {--icon:var(--focus-accent);--memory:var(--focus-accent);--cpu:var(--focus-accent);--battery:var(--focus-accent);--media:var(--focus-accent);--network:var(--focus-accent);--vpn:var(--focus-accent);--border:var(--focus-edge);--nord-14:var(--focus-accent);--nord-15:var(--focus-accent);}
+
+/* The layout editor changes contents, never these three geometric anchors. */
+.nord-arranged {display:block;--clock-width:248px;--left-end:min(34vw,calc(50vw - var(--clock-width)/2 - 48px));}
+.nord-layout-lane {position:absolute;top:6px;height:38px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;overscroll-behavior-x:contain;}
+.nord-layout-left {left:8px;width:calc(var(--left-end) - 8px);}
+.nord-layout-right {right:8px;width:calc(50% - var(--clock-width)/2 - 20px);}
+.nord-layout-items {display:flex;align-items:center;gap:5px;min-width:100%;width:max-content;height:38px;}
+.nord-layout-right .nord-layout-items {justify-content:flex-end;}
+.nord-layout-slot {display:flex;align-items:center;flex:0 0 auto;}
+.nord-layout-left .nord-layout-slot[data-widget="direction"] {margin-left:auto;}
+.nord-layout-clock {position:absolute;top:9px;left:50%;transform:translateX(-50%);}
+.nord-arranged .nord-direction {margin-left:0;}
+.nord-arranged .nord-search-button {width:clamp(150px,12vw,240px);}
+.nord-arranged .nord-workspaces {overflow:visible;}
+.nord-task-icon.is-closed img {filter:grayscale(1);opacity:.43;}
+.nord-task-icon.is-closed {border-style:dashed;background:transparent;color:var(--muted-3);}
+.nord-task-icon.is-closed:hover img {opacity:.8;}
+.nord-task-icon.is-elsewhere {border-style:dashed;}
+.nord-task-icon:disabled {cursor:wait;opacity:.55;}
+.nord-vpn{display:flex;align-items:center;gap:6px;height:32px;padding:0 10px;border:1px solid color-mix(in srgb, var(--nord-9) 27%, transparent);border-radius:calc(20px * var(--round, 1));background:color-mix(in srgb, var(--nord-9) 5%, transparent);color:var(--muted-2);font:inherit;font-size:12px;cursor:pointer;transition:background calc(130ms * var(--motion-time, 1)),transform calc(130ms * var(--motion-time, 1)) var(--motion-ease, ease);white-space:nowrap}.nord-vpn.connected{color:var(--nord-14,var(--nord-14));background:color-mix(in srgb, var(--nord-14) 9%, transparent)}.nord-vpn:hover{background:color-mix(in srgb, var(--nord-9) 15%, transparent)}.nord-vpn:active{transform:scale(.96)}.nord-vpn:focus-visible{outline:2px solid var(--nord-8);outline-offset:2px}
+.nord-tray svg{transition:transform calc(160ms * var(--motion-time, 1)) var(--motion-ease, ease)}.nord-tray.open svg{transform:rotate(180deg)}
+
+/* Shared shell hierarchy: neutral idle controls; accent belongs to selection and feedback. */
+.nord-frost-bar .nord-widget-group { background: transparent; border-color: transparent; }
+.nord-frost-bar :is(.nord-clock-button,.nord-search-button,.nord-direction,.nord-tray,.nord-power,.nord-volume,.nord-vpn,.workspace-rules-button) {
+  border-color: transparent; background: transparent; box-shadow: none; color: var(--muted);
+}
+.nord-frost-bar :is(.nord-clock-button,.nord-search-button,.nord-direction,.nord-tray,.nord-power,.nord-volume,.nord-vpn,.workspace-rules-button):hover {
+  background: color-mix(in srgb, var(--nord-4) var(--surface-hover, 7%), transparent); color: var(--nord-6); transform: none;
+}
+.nord-frost-bar :is(.nord-clock-button,.nord-search-button,.nord-direction,.nord-tray,.nord-power,.nord-volume,.nord-vpn,.workspace-rules-button):focus-visible {
+  outline: 2px solid var(--nord-8); outline-offset: 1px;
+}
+.nord-frost-bar .workspace-rules-button { color: var(--rules-idle-color, var(--muted)); }
+.nord-frost-bar .nord-clock-button { color: var(--nord-5); font-variant-numeric: tabular-nums; }
+.nord-frost-bar .nord-search-button { background: color-mix(in srgb, var(--nord-4) var(--surface-idle, 4%), transparent); }
+.nord-frost-bar .nord-search-button input::placeholder { color: var(--muted-2); opacity: 1; }
+.nord-frost-bar .nord-search-button:focus-within { background: color-mix(in srgb, var(--nord-8) var(--surface-selected, 10%), transparent); border-color: color-mix(in srgb, var(--nord-8) 40%, transparent); }
+.nord-frost-bar .nord-status { color: var(--muted); background: transparent; padding-left: 9px; padding-right: 9px; }
+.nord-frost-bar .nord-status:hover { background: color-mix(in srgb, var(--nord-4) var(--surface-hover, 7%), transparent); }
+.nord-frost-bar .workspace-circle { border-width: 1px; border-color: transparent; color: var(--muted-2); font-weight: 500; }
+.nord-frost-bar .nord-workspace-button.focused .workspace-circle { background: var(--workspace-accent); color: var(--nord-0); }
+.nord-frost-bar .nord-workspace-button:hover .workspace-circle { color: var(--nord-6); background: color-mix(in srgb, var(--workspace-accent) 15%, transparent); }
+.nord-frost-bar .nord-workspace-button.focused:hover .workspace-circle { background: var(--workspace-accent); color: var(--nord-0); }
+.nord-frost-bar .nord-workspace-button:hover > div { transform: none; filter: none; }
+.nord-frost-bar .nord-task-icon { border-color: transparent; background: transparent; }
+.nord-frost-bar .nord-task-icon:hover { background: color-mix(in srgb, var(--nord-4) var(--surface-hover, 7%), transparent); }
+.nord-frost-bar .nord-task-icon.is-focused { border-color: color-mix(in srgb, var(--nord-8) 28%, transparent); background: color-mix(in srgb, var(--nord-8) var(--surface-selected, 10%), transparent); }
+.nord-frost-bar .nord-task-icon.is-elsewhere { border-color: color-mix(in srgb, var(--muted) 25%, transparent); }
+.nord-frost-bar .nord-player { background: transparent; }
+.nord-frost-bar .nord-player.is-playing { background: color-mix(in srgb, var(--player-accent) 7%, transparent); }
+.nord-frost-bar .nord-player:hover { background: color-mix(in srgb, var(--nord-4) var(--surface-hover, 7%), transparent); }
+.nord-frost-bar .player-detail { color: var(--muted); }
+.nord-frost-bar .nord-volume.is-muted { color: var(--nord-11); }
+.nord-frost-bar .nord-vpn.connected { color: var(--nord-14); }
+.nord-frost-bar .nord-power:hover { color: var(--danger-soft); }
+.locked-in .nord-frost-bar :is(.nord-clock-button,.nord-status,.nord-direction) { color: var(--focus-accent); }
+
+/* A quiet shared surface for workspace apps, matching the search field's tint. */
+.nord-task-icons.has-apps {padding:4px 8px;border-radius:calc(20px * var(--round, 1));background:color-mix(in srgb, var(--nord-4) var(--surface-idle, 4%), transparent);}
+
+.nord-focus-countdown{font-size:11px;font-variant-numeric:tabular-nums;color:var(--nord-8);padding-right:9px;border-right:1px solid color-mix(in srgb,var(--nord-8) 22%,transparent);white-space:nowrap}.nord-clock-button{font-variant-numeric:tabular-nums}
+
+/* One hover surface for every widget, including selected apps and active media.
+   State colors remain on icons, outlines and the selected workspace circle. */
+.nord-frost-bar {
+  --widget-hover-background: color-mix(in srgb, var(--nord-4) var(--surface-hover, 7%), transparent);
+}
+.nord-frost-bar :is(.nord-clock-button,.nord-search-button,.nord-search-button:focus-within,.nord-direction,.nord-tray,.nord-power,.nord-volume,.nord-vpn,.workspace-rules-button,.nord-status,.nord-task-icon,.nord-task-icon.is-focused,.nord-player,.nord-player.has-session):hover {
+  background: var(--widget-hover-background);
+}
+.nord-frost-bar .nord-workspace-button:not(.focused):not(:disabled):hover .workspace-circle,
+.nord-frost-bar .player-badge:hover,
+.nord-frost-bar .player-controls button:not(.player-toggle):hover {
+  background: var(--widget-hover-background);
+}
+.nord-frost-bar .player-controls .player-toggle:hover {
+  background: color-mix(in srgb, var(--player-accent) calc(100% - var(--surface-hover, 7%)), white);
+}
+/* The shared palette clock animates color itself. Avoid a second CSS transition chasing each frame. */
+html.theme-transition .nord-frost-bar * {
+  transition-property: transform, opacity, width, height, border-radius !important;
+}
+.nord-theme-frost { position:absolute;inset:0;z-index:-2;pointer-events:none; }
+.nord-layout-right:has(.nord-layout-slot:first-child[data-widget="quickActions"]) {width:calc(50% - var(--clock-width)/2 - 8px);}
+.nord-layout-right .nord-layout-slot:first-child[data-widget="quickActions"] {flex:1 0 auto;justify-content:center;padding-left:5px;}
+.nord-quick-actions {display:flex;align-items:center;gap:2px;padding:2px;border-radius:calc(18px * var(--round,1));}
+.nord-quick-action {width:30px;height:30px;display:grid;place-items:center;flex:0 0 auto;padding:5px;border:0;border-radius:calc(16px * var(--round,1));background:transparent;color:var(--muted);cursor:pointer;transition:background calc(140ms * var(--motion-time,1)),color calc(140ms * var(--motion-time,1));}
+.nord-quick-action svg {width:19px;height:19px;}
+.nord-frost-bar .nord-quick-action:hover {background:var(--widget-hover-background);color:var(--nord-6);}
+.nord-frost-bar .nord-quick-action.is-open {background:var(--widget-hover-background);color:var(--nord-6);}
+.nord-quick-action:active {transform:scale(.94);}
+@media (prefers-reduced-motion:reduce) {.nord-quick-action:active {transform:none;}}
+.nord-quick-action:focus-visible {outline:2px solid var(--nord-8);outline-offset:1px;}
+.nord-quick-action.nord-discord-action.is-muted,.nord-quick-action.nord-discord-action.is-muted:hover {color:#ff6b7f;}
+.nord-discord-action.is-deafened {color:var(--nord-11);}
+.nord-task-icon { cursor: default; touch-action: none; user-select: none; -webkit-user-drag: none; } .nord-task-icon img { pointer-events: none; -webkit-user-drag: none; } .nord-task-icon.is-dragging { opacity: .45; cursor: default; }
+/* The mute slash draws in/out; state changes only after Discord confirms it. */
+.nord-discord-action .discord-mute-slash {stroke:#ff526e;stroke-width:2.6;stroke-dasharray:.13 .055;stroke-dashoffset:1;opacity:0;transition:stroke-dashoffset calc(180ms * var(--motion-time,1)) ease,opacity calc(140ms * var(--motion-time,1)) ease;}
+.nord-discord-action.is-muted .discord-mute-slash {stroke-dashoffset:0;opacity:1;}
+.nord-discord-action .discord-mic {transform-origin:19.5px 19px;transition:opacity calc(180ms * var(--motion-time,1)) ease;}
+.nord-discord-action.is-muted .discord-mic {opacity:1;}
+@media (prefers-reduced-motion:reduce) {.nord-discord-action .discord-mute-slash,.nord-discord-action .discord-mic {transition:none;}}
+
+.nord-notification-bell{position:relative}.nord-notification-count{position:absolute;right:0;top:0;min-width:12px;height:12px;padding:0 2px;border-radius:8px;background:var(--nord-8);color:var(--nord-0);font-size:8px;font-weight:600;line-height:12px;text-align:center;pointer-events:none}
+
+/* Independent CC and notification joins share the edge without overwriting each other. */
+.center-gap {--cc-edge-mask:linear-gradient(to right,#000 var(--gap-left),transparent var(--gap-left),transparent var(--gap-right),#000 var(--gap-right));--cc-frame-mask:linear-gradient(to right,#000 calc(var(--gap-left) * var(--edge-dpr,1)),transparent calc(var(--gap-left) * var(--edge-dpr,1)),transparent calc(var(--gap-right) * var(--edge-dpr,1)),#000 calc(var(--gap-right) * var(--edge-dpr,1)));}
+.notification-gap {--notification-edge-mask:linear-gradient(to right,transparent var(--notification-gap-right),#000 var(--notification-gap-right));--notification-frame-mask:linear-gradient(to right,transparent calc(var(--notification-gap-right) * var(--edge-dpr,1)),#000 calc(var(--notification-gap-right) * var(--edge-dpr,1)));}
+html:is(.center-gap,.notification-gap) .nord-frost-bar .nord-horizontal-edge {mask-image:var(--cc-edge-mask,linear-gradient(#000,#000)),var(--notification-edge-mask,linear-gradient(#000,#000));mask-composite:intersect;}
+html:is(.center-gap,.notification-gap) .nord-frost-bar::after {mask-image:var(--cc-frame-mask,linear-gradient(#000,#000)),var(--notification-frame-mask,linear-gradient(#000,#000));mask-composite:intersect;}
+.nord-workspaces { position: relative; }
+.nord-alt-ring { position:absolute; pointer-events:none; box-sizing:border-box; border:1.5px solid #fff; border-radius:calc(16px * var(--round,1)); opacity:0; transition:opacity 120ms ease; z-index:2; }
+.nord-alt-ring.visible { opacity:1; }
+@media (prefers-reduced-motion:reduce) { .nord-alt-ring {transition:none;} }

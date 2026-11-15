@@ -1,0 +1,9 @@
+<!doctype html><html><head><style>html,body{margin:0;background:transparent;overflow:hidden}.nord-frost-bar{background:transparent!important}</style></head><body><div class="nord-frost-bar"><svg class="nord-horizontal-edge"><defs><linearGradient id="nord-horizontal-gradient" x1="0%" x2="100%"><stop offset="0%"/><stop offset="100%"/></linearGradient></defs><rect/></svg></div><script type="module">
+import '../../src/frost-bar.css';
+import {edgeMetrics} from '../../src/lib/edge-metrics';
+window.setEdge=(reportedHeight)=>{
+ const d=devicePixelRatio,m=edgeMetrics(innerHeight,d,reportedHeight,9.6),s=document.documentElement.style;
+ for(const [k,v] of Object.entries({'--edge':'#ffffff','--edge-dpr':String(d),'--edge-snap':m.offset+'px','--edge-source-height':m.sourceHeight+'px','--edge-source-bottom':m.bottom+'px','--frame':'13px','--frame-radius':'9.6px','--edge-line':m.line+'px'}))s.setProperty(k,v);
+ return m;
+};
+</script></body></html>

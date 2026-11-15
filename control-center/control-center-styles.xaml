@@ -1,0 +1,33 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+ <Style TargetType="Button">
+  <Setter Property="Foreground" Value="{DynamicResource ThemeText}"/><Setter Property="Background" Value="Transparent"/><Setter Property="Padding" Value="8"/><Setter Property="Cursor" Value="Hand"/>
+  <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="Button"><Border x:Name="Surface" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="6"><ContentPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><ControlTemplate.Triggers><Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Surface" Property="Background" Value="{DynamicResource ThemeHover}"/></Trigger><Trigger Property="IsEnabled" Value="False"><Setter Property="Opacity" Value="0.35"/></Trigger><Trigger Property="IsPressed" Value="True"><Setter TargetName="Surface" Property="Background" Value="{DynamicResource ThemePressed}"/></Trigger></ControlTemplate.Triggers></ControlTemplate></Setter.Value></Setter>
+ </Style>
+ <Style TargetType="Slider">
+  <Setter Property="Height" Value="24"/><Setter Property="IsMoveToPointEnabled" Value="True"/>
+  <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="Slider"><Grid><Border Height="4" Background="{DynamicResource ThemeTrack}" CornerRadius="2" VerticalAlignment="Center"/><Track x:Name="PART_Track"><Track.DecreaseRepeatButton><RepeatButton Command="Slider.DecreaseLarge" Opacity="0"/></Track.DecreaseRepeatButton><Track.Thumb><Thumb Width="16" Height="16"><Thumb.Template><ControlTemplate TargetType="Thumb"><Ellipse Fill="{DynamicResource ThemeAccent}" Stroke="{DynamicResource ThemeBright}" StrokeThickness="1"/></ControlTemplate></Thumb.Template></Thumb></Track.Thumb><Track.IncreaseRepeatButton><RepeatButton Command="Slider.IncreaseLarge" Opacity="0"/></Track.IncreaseRepeatButton></Track></Grid></ControlTemplate></Setter.Value></Setter>
+ </Style>
+ <Style TargetType="ComboBoxItem">
+  <Setter Property="Padding" Value="10,7"/><Setter Property="Foreground" Value="{DynamicResource ThemeText}"/>
+  <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="ComboBoxItem"><Border x:Name="Row" CornerRadius="7" Background="Transparent" Margin="3,1"><ContentPresenter Margin="{TemplateBinding Padding}"/></Border><ControlTemplate.Triggers><Trigger Property="IsHighlighted" Value="True"><Setter TargetName="Row" Property="Background" Value="{DynamicResource ThemeSelected}"/></Trigger><Trigger Property="IsSelected" Value="True"><Setter TargetName="Row" Property="Background" Value="{DynamicResource ThemeOver}"/></Trigger></ControlTemplate.Triggers></ControlTemplate></Setter.Value></Setter>
+ </Style>
+ <Style TargetType="ComboBox">
+  <Setter Property="Foreground" Value="{DynamicResource ThemeText}"/><Setter Property="Background" Value="{DynamicResource ThemeRaised}"/><Setter Property="BorderBrush" Value="{DynamicResource ThemeBorder}"/><Setter Property="BorderThickness" Value="1"/><Setter Property="MinHeight" Value="34"/><Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+  <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="ComboBox"><Grid>
+   <ToggleButton Focusable="False" IsChecked="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
+    <ToggleButton.Template><ControlTemplate TargetType="ToggleButton"><Border x:Name="Face" Background="{DynamicResource ThemeRaised}" BorderBrush="{DynamicResource ThemeBorder}" BorderThickness="1" CornerRadius="10"><Grid><Path Data="M0,0 L4,4 L8,0" Stroke="{DynamicResource ThemeMuted}" StrokeThickness="1.5" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,13,0"/></Grid></Border><ControlTemplate.Triggers><Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Face" Property="Background" Value="{DynamicResource ThemeOver}"/></Trigger></ControlTemplate.Triggers></ControlTemplate></ToggleButton.Template>
+   </ToggleButton>
+   <TextBlock Margin="12,7,32,7" IsHitTestVisible="False" Text="{Binding SelectedItem.FriendlyName, RelativeSource={RelativeSource TemplatedParent}}" TextTrimming="CharacterEllipsis" VerticalAlignment="Center"/>
+   <Popup x:Name="PART_Popup" Placement="Bottom" AllowsTransparency="True" Focusable="False" IsOpen="{TemplateBinding IsDropDownOpen}" PopupAnimation="None"><Border Background="{DynamicResource ThemeRaised}" BorderBrush="{DynamicResource ThemeBorder}" BorderThickness="1" CornerRadius="10" Padding="3" Margin="0,4,0,0" MinWidth="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}"><ScrollViewer MaxHeight="240" CanContentScroll="True"><ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained"/></ScrollViewer></Border></Popup>
+  </Grid></ControlTemplate></Setter.Value></Setter>
+ </Style>
+ <Style TargetType="Expander">
+  <Setter Property="Foreground" Value="{DynamicResource ThemeMuted}"/>
+  <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="Expander"><StackPanel>
+   <Grid><ToggleButton IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" Content="{TemplateBinding Header}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="Left" Padding="0,7,20,7">
+    <ToggleButton.Template><ControlTemplate TargetType="ToggleButton"><Border Background="Transparent" Padding="{TemplateBinding Padding}"><ContentPresenter HorizontalAlignment="Left"/></Border></ControlTemplate></ToggleButton.Template>
+   </ToggleButton><Path x:Name="Arrow" Data="M0,0 L4,4 L0,8" Stroke="{DynamicResource ThemeMuted}" StrokeThickness="1.4" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0" IsHitTestVisible="False"/></Grid>
+   <Border x:Name="Details" Visibility="Collapsed" Padding="0,2,0,8"><ContentPresenter ContentSource="Content"/></Border>
+  </StackPanel><ControlTemplate.Triggers><Trigger Property="IsExpanded" Value="True"><Setter TargetName="Details" Property="Visibility" Value="Visible"/><Setter TargetName="Arrow" Property="Data" Value="M0,0 L4,4 L8,0"/></Trigger></ControlTemplate.Triggers></ControlTemplate></Setter.Value></Setter>
+ </Style>
+</ResourceDictionary>

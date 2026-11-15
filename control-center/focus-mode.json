@@ -1,0 +1,19 @@
+{
+    "defaultMinutes":  45,
+    "blockedProcesses":  [
+
+                         ],
+    "hiddenProcesses":  [
+                            "steam",
+                            "steamwebhelper"
+                        ],
+    "disabledWorkspaces":  [
+
+                           ],
+    "fallbackWorkspace":  "1",
+    "edge":  "#315C45",
+    "background":  "#151816",
+    "accent":  "#81A990",
+    "breakMinutes":  10,
+    "autoStartBreak":  true
+}

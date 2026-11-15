@@ -1,0 +1,97 @@
+{
+  "workspaces": [
+    {
+      "name": "1",
+      "label": "Work",
+      "monitor": 1,
+      "apps": [
+        { "id": "helium", "catalogPattern": "^Helium$", "processPattern": "^chrome$", "titlePattern": " - Helium$" },
+        { "id": "word", "catalogPattern": "^(Microsoft )?Word$", "processPattern": "^WINWORD$" }
+      ]
+    },
+    {
+      "name": "2",
+      "label": "Media",
+      "monitor": 1,
+      "apps": [
+        { "id": "spotify", "catalogPattern": "^Spotify$", "processPattern": "^Spotify$" },
+        { "id": "whatsapp", "catalogPattern": "^WhatsApp$", "processPattern": "^WhatsApp$" },
+        { "id": "signal", "catalogPattern": "^Signal$", "processPattern": "^Signal$" }
+      ]
+    },
+    {
+      "name": "3",
+      "label": "AI",
+      "monitor": 1,
+      "apps": [
+        { "id": "chatgpt", "catalogPattern": "^ChatGPT$", "processPattern": "^(ChatGPT|Codex)$" },
+        { "id": "claude", "catalogPattern": "^Claude$", "processPattern": "^claude$" }
+      ]
+    },
+    {
+      "name": "4",
+      "label": "Code",
+      "monitor": 1,
+      "apps": [
+        { "id": "vscode", "catalogPattern": "^Visual Studio Code$", "processPattern": "^(Code)$" },
+        { "id": "vscodium", "catalogPattern": "^VSCodium$", "processPattern": "^(VSCodium)$" },
+        { "id": "vscode-insiders", "catalogPattern": "^Visual Studio Code - Insiders$", "processPattern": "^(Code - Insiders)$" },
+        { "id": "idea", "catalogPattern": "^IntelliJ IDEA", "processPattern": "^(idea64|idea)$" },
+        { "id": "pycharm", "catalogPattern": "^PyCharm", "processPattern": "^(pycharm64|pycharm)$" },
+        { "id": "webstorm", "catalogPattern": "^WebStorm", "processPattern": "^(webstorm64|webstorm)$" },
+        { "id": "rider", "catalogPattern": "^Rider|^JetBrains Rider", "processPattern": "^(rider64|rider)$" },
+        { "id": "clion", "catalogPattern": "^CLion", "processPattern": "^(clion64|clion)$" },
+        { "id": "goland", "catalogPattern": "^GoLand", "processPattern": "^(goland64|goland)$" },
+        { "id": "phpstorm", "catalogPattern": "^PhpStorm", "processPattern": "^(phpstorm64|phpstorm)$" },
+        { "id": "rubymine", "catalogPattern": "^RubyMine", "processPattern": "^(rubymine64|rubymine)$" },
+        { "id": "datagrip", "catalogPattern": "^DataGrip", "processPattern": "^(datagrip64|datagrip)$" },
+        { "id": "studio", "catalogPattern": "^Android Studio", "processPattern": "^(studio64)$" },
+        { "id": "visualstudio", "catalogPattern": "^Visual Studio [0-9]", "processPattern": "^(devenv)$" },
+        { "id": "zed", "catalogPattern": "^Zed$", "processPattern": "^(zed)$" }
+      ]
+    },
+    {
+      "name": "5",
+      "label": "Terminal",
+      "monitor": 1,
+      "apps": [
+        { "id": "terminal", "catalogPattern": "^(Windows )?Terminal$", "processPattern": "^WindowsTerminal$" },
+        { "id": "termius", "catalogPattern": "^Termius$", "processPattern": "^Termius$" }
+      ]
+    },
+    {
+      "name": "6",
+      "label": "Games",
+      "monitor": 1,
+      "apps": [
+        { "id": "steam", "catalogPattern": "^Steam$", "processPattern": "^(steam|steamwebhelper)$" },
+        { "id": "prism", "catalogPattern": "^Prism Launcher$", "processPattern": "^prismlauncher$" }
+      ]
+    },
+    {
+      "name": "7",
+      "label": "",
+      "monitor": 1
+    },
+    {
+      "name": "8",
+      "label": "",
+      "monitor": 1
+    },
+    {
+      "name": "9",
+      "label": "",
+      "monitor": 2,
+      "keepAlive": true
+    },
+    {
+      "name": "0",
+      "label": "Monitor 2",
+      "monitor": 2,
+      "keepAlive": true,
+      "apps": [
+        { "id": "discord", "catalogPattern": "^Discord$", "processPattern": "^Discord$" }
+      ]
+    }
+  ]
+}

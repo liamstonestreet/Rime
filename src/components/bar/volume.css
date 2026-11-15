@@ -1,0 +1,9 @@
+.nord-volume{display:flex;align-items:center;gap:6px;padding:4px 8px;border:1px solid color-mix(in srgb, var(--nord-8) 27%, transparent);border-radius:calc(20px * var(--round, 1));background:color-mix(in srgb, var(--nord-8) 8%, transparent);color:var(--nord-8);height:32px;transition:background calc(140ms * var(--motion-time, 1)),border-color calc(140ms * var(--motion-time, 1))}
+.nord-volume:hover{background:color-mix(in srgb, var(--nord-8) 15%, transparent);border-color:color-mix(in srgb, var(--nord-8) 47%, transparent)}
+.nord-volume button{display:flex;align-items:center;cursor:pointer;transition:transform calc(120ms * var(--motion-time, 1)) var(--motion-ease, ease);color:inherit;background:none;border:0;padding:2px}
+.nord-volume button:hover{transform:scale(1.12)}
+.nord-volume button:active{transform:scale(.92)}
+.nord-volume input{width:66px;height:4px;accent-color:var(--nord-8);cursor:pointer;transition:transform calc(140ms * var(--motion-time, 1)) var(--motion-ease, ease)}
+.nord-volume input:hover{transform:scaleY(1.2)}
+.nord-volume span{font-size:11px;min-width:20px;font-variant-numeric:tabular-nums}
+@media(prefers-reduced-motion:reduce){.nord-volume,.nord-volume button,.nord-volume input{transition:none}}

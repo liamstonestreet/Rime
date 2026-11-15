@@ -1,0 +1,7 @@
+  # BEGIN NORD WORKSPACE CYCLING
+  # All configured workspaces, including empty ones; wraps 1..9,0 across monitors.
+  - commands: ['focus --prev-workspace']
+    bindings: ['alt+oem_open_brackets']
+  - commands: ['focus --next-workspace']
+    bindings: ['alt+oem_close_brackets']
+  # END NORD WORKSPACE CYCLING

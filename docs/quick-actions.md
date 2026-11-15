@@ -1,0 +1,11 @@
+# Quick actions
+
+Three small actions sit before the right-hand widgets, using available space after the center clock/CC button. **CC → Layout → Quick actions** can hide or move the group. Existing layouts migrate it to the start of the right lane, preserving their other choices. Hover fills follow Surface contrast and the shared palette transition.
+
+- **Reflection:** creates an empty `~/Repos/ObsidianBackup/Reflection/yyyy-MM-dd.md` using the PC's local date, then opens it in Obsidian. Repeated/concurrent clicks reopen the existing file without changing its contents. It uses Obsidian's [documented absolute-path open URI](https://help.obsidian.md/Extending+Obsidian/Obsidian+URI). Obsidian must be installed and its URI handler registered.
+- **Discord:** hover or click the custom icon to show a native menu beneath the bar. Mute/unmute and deafen/undeafen invoke the running desktop Discord client's accessible voice buttons. No focus commands, global keystrokes, Windows microphone mute or system-volume mute are used. Status updates when opened or used; there is no idle Discord polling. If Discord is closed, hangs, or does not expose its English voice-control labels, the menu reports the problem and does not pretend an action succeeded. Opening Discord's main window once can make those controls available. Only one accessibility query/action runs at a time; a timed-out provider cannot accumulate worker tasks.
+- **GitHub:** opens `https://github.com/` with the Windows default-browser handler.
+
+The native popup is not clipped to Zebar's 50 px window, follows the hovered monitor's DPI, and closes after leaving the icon/menu, clicking outside or pressing Escape. Its pointer timer exists only while open. Native tests use temporary notes in the check directory and injected app/voice callbacks; they do not create real reflections, launch a browser or alter Discord voice settings.
+
+Voice rows reflect the current state: a muted mic or deafened headset has a slashed, error-colored icon and an **Unmute microphone** or **Undeafen audio** action. UIA toggle/checked state takes precedence over a static control name, with action names as a fallback. State refreshes every 750 ms only while the popup is open; refreshes and clicks are serialized to avoid competing accessibility requests. Closing the menu stops its refresh timer.

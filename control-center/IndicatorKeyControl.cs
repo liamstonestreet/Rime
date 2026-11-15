@@ -1,0 +1,13 @@
+using System;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+
+static class IndicatorKeyControl {
+ public static FrameworkElement Build(){
+  var panel=new StackPanel{Margin=new Thickness(0,18,0,4)};panel.Children.Add(new TextBlock{Text="Keybinds",FontSize=19,FontWeight=FontWeights.Medium});panel.Children.Add(new TextBlock{Text="Hold a key to show its indicator. Wallpaper: Up/Down changes category; Left/Right or [ / ] browses images; release to apply.\nThese change the indicators, not your GlazeWM workspace shortcuts.",FontSize=10,Foreground=ControlCenterTheme.Current.Brush("Muted"),TextWrapping=TextWrapping.Wrap,Margin=new Thickness(0,7,0,10)});
+  Func<string,string,ComboBox> picker=(label,name)=>{panel.Children.Add(new TextBlock{Text=label,FontSize=11,Foreground=ControlCenterTheme.Current.Brush("Muted"),Margin=new Thickness(0,0,0,5)});var combo=new ComboBox{Name=name,ItemsSource=IndicatorKeys.Choices,Margin=new Thickness(0,0,0,10)};panel.Children.Add(combo);return combo;};var workspace=picker("Alt / workspace indicator","RiceWorkspaceKey");var wallpaper=picker("Wallpaper indicator","RiceWallpaperKey");var note=new TextBlock{FontSize=11,Foreground=ControlCenterTheme.Current.Brush("Muted"),TextWrapping=TextWrapping.Wrap,Margin=new Thickness(0,8,0,0)};
+  Action load=()=>{var settings=IndicatorKeys.Load();workspace.SelectedItem=IndicatorKeys.Choices.First(c=>c.Name==settings.workspace);wallpaper.SelectedItem=IndicatorKeys.Choices.First(c=>c.Name==settings.wallpaper);};try{load();}catch(Exception e){note.Text=e.Message;workspace.SelectedItem=IndicatorKeys.Choices[0];wallpaper.SelectedItem=IndicatorKeys.Choices.First(c=>c.Name=="rightctrl");}
+  var actions=new StackPanel{Orientation=Orientation.Horizontal};var apply=RiceLayout.Button("Apply keybinds","RiceApplyIndicatorKeys");var reset=RiceLayout.Button("Defaults","RiceResetIndicatorKeys");apply.Click+=delegate{try{var settings=new IndicatorKeySettings{workspace=((IndicatorKeyChoice)workspace.SelectedItem).Name,wallpaper=((IndicatorKeyChoice)wallpaper.SelectedItem).Name};IndicatorKeys.Save(settings);WallpaperSwitcher.ApplyHoldKey(settings);note.Text="Applied. Indicator keys update immediately.";}catch(Exception e){note.Text=e.Message;}};reset.Click+=delegate{workspace.SelectedItem=IndicatorKeys.Choices.First(c=>c.Name=="leftalt");wallpaper.SelectedItem=IndicatorKeys.Choices.First(c=>c.Name=="rightctrl");note.Text="Defaults selected. Click Apply keybinds to save.";};actions.Children.Add(apply);actions.Children.Add(reset);panel.Children.Add(actions);panel.Children.Add(note);panel.Children.Add(new NotificationPanelControls());return panel;
+ }
+}

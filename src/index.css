@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+@import "https://www.nerdfonts.com/assets/css/webfont.css";
+@import "https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css";
+
+:root {
+  /* ==========================================
+     Nord Theme Palette (Official Guide)
+     ========================================== */
+
+  /* Polar Night: Dark background and base colors */
+  --nord-0: #2e3440; /* Base background */
+  --nord-1: #3b4252; /* Elevated panels / widgets bg */
+  --nord-2: #434c5e; /* Borders and selections */
+  --nord-3: #4c566a; /* Muted text / comments / disabled */
+
+  /* Snow Storm: Text and bright typography */
+  --nord-4: #d8dee9; /* Primary text / body typography */
+  --nord-5: #e5e9f0; /* Elevated / hover text */
+  --nord-6: #eceff4; /* Active / highlighted text */
+
+  /* Frost: Accents and cold status indicators */
+  --nord-7: #8fbcbb; /* Teal - Network / success */
+  --nord-8: #88c0d0; /* Ice Blue - Standard icons / primary accent */
+  --nord-9: #81a1c1; /* Soft Blue - Secondary accents / memory stats */
+  --nord-10: #5e81ac; /* Deep Blue - Tertiary accents / battery base */
+
+  /* Aurora: Multi-color status indicators and alerts */
+  --nord-11: #bf616a; /* Red - Error / high CPU / battery low */
+  --nord-12: #d08770; /* Orange - Warning / RSS feed */
+  --nord-13: #ebcb8b; /* Yellow - Attention / battery mid */
+  --nord-14: #a3be8c; /* Green - Success / normal CPU / battery good */
+  --nord-15: #b48ead; /* Purple - Media / secondary actions */
+
+  /* ==========================================
+     Theme Mappings
+     ========================================== */
+  --text: var(--nord-4);
+  --bg: var(--nord-0);
+  --border: var(--nord-2);
+  /* Bar-specific tones. The wallpaper theme overrides these with the palette (see lib/appearance.ts). */
+  --edge: #6b86a3;
+  --muted: #aab6c8;
+  --muted-2: #9aa7ba;
+  --muted-3: #87909f;
+  --shade: #242933;
+  --danger-soft: #d8a0a5;
+  /* Bar background opacity, 0–1 (1 - the Rice tab's transparency). */
+  --bar-opacity: 1;
+  --icon: var(--nord-8);
+  --memory: var(--nord-9);
+  --cpu: var(--nord-14);
+  --cpu-high-usage: var(--nord-11);
+  --battery: var(--nord-10);
+  --battery-good: var(--nord-14);
+  --battery-mid: var(--nord-13);
+  --battery-low: var(--nord-11);
+  --media: var(--nord-15);
+  --network: var(--nord-7);
+  --vpn: var(--nord-9);
+  --rss: var(--nord-12);
+  --weather: var(--nord-8);
+
+  /* Workspaces (Spectrum starting with Frost into Aurora) */
+  --ws-1: var(--nord-8);  /* Ice Blue */
+  --ws-2: var(--nord-9);  /* Soft Blue */
+  --ws-3: var(--nord-10); /* Deep Blue */
+  --ws-4: var(--nord-7);  /* Teal */
+  --ws-5: var(--nord-14); /* Green */
+  --ws-6: var(--nord-13); /* Yellow */
+  --ws-7: var(--nord-12); /* Orange */
+  --ws-8: var(--nord-11); /* Red */
+  --ws-9: var(--nord-15); /* Purple */
+
+  /* Base background color for active text contrast */
+  --base: var(--nord-0);
+  --rp-base: var(--nord-0); /* Fallback */
+}
+
+@theme {
+  --animate-flash: flash 1s infinite;
+  @keyframes flash {
+      from { opacity: 1.0; }
+      50% { opacity: 0.5; }
+      to { opacity: 1.0; }
+  }
+
+  
+  --animate-charging: battery-charge 2.1s ease-in-out infinite;
+  --battery-percent: var(--tw-battery-width, 0%);
+  @keyframes battery-charge {
+    0% {
+      width: var(--tw-battery-width);
+    }
+    10% {
+      width: var(--tw-battery-width);
+    }
+    60% {
+      width: 100%;
+    }
+    99% {
+      width: 100%;
+    }
+    100% {
+      width: var(--tw-battery-width);
+    }
+  }
+}
+
+
+body {
+  font-family: var(--rice-font, "Rubik", sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  overflow: hidden;
+  background: transparent;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  background: transparent;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.systray-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+
+button {
+  cursor: pointer;
+}
+@font-face {font-family: Rubik; src: url("/fonts/Rubik-VariableFont_wght.ttf") format("truetype"); font-weight: 300 900; font-style: normal; font-display: swap;}

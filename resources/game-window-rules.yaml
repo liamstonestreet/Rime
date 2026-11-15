@@ -1,0 +1,14 @@
+  # BEGIN NORD GAME IGNORE RULES
+  # Games manage their own window/fullscreen state. Add game executables here.
+  - commands: ['ignore']
+    match:
+      - window_process: { regex: '(?i)^(Overwatch|VALORANT|VALORANT-Win64-Shipping)$' }
+  # Minecraft Java (including Prism instances) and Bedrock.
+  - commands: ['ignore']
+    match:
+      - window_process: { regex: '(?i)^javaw?$' }
+        window_class: { regex: '^(GLFW30|LWJGL)$' }
+      - window_process: { regex: '(?i)^javaw?$' }
+        window_title: { regex: '(?i)minecraft' }
+      - window_process: { equals: 'Minecraft.Windows' }
+  # END NORD GAME IGNORE RULES

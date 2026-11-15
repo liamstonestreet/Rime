@@ -1,0 +1,121 @@
+/* Nord colours, with Caelestia's expressive spatial/effects timing.
+   Every hover selector is scoped to one player, never an ancestor .group. */
+.nord-players {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  --player-spatial: cubic-bezier(.38, 1.21, .22, 1);
+  --player-effects: cubic-bezier(.34, .8, .34, 1);
+}
+.nord-player {
+  --player-accent: var(--nord-14, var(--nord-14));
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 173px;
+  height: 32px;
+  padding: 0 9px 0 2px;
+  flex: 0 0 auto;
+  border-radius:calc(18px * var(--round, 1));
+  color: var(--player-accent);
+  background: color-mix(in srgb, var(--player-accent) 7%, transparent);
+  transition: width calc(350ms * var(--motion-time, 1)) var(--player-spatial), background calc(180ms * var(--motion-time, 1)) var(--player-effects);
+}
+.nord-player[data-player="helium"] { --player-accent: var(--nord-15, var(--nord-15)); }
+
+.nord-player.is-playing { background: color-mix(in srgb, var(--player-accent) 13%, transparent); }
+.nord-player.has-session:hover,
+.nord-player.has-session:has(:focus-visible) { background: color-mix(in srgb, var(--player-accent) 19%, transparent); }
+.player-badge {
+  padding: 0;
+  border: 0;
+  border-radius:calc(20px * var(--round, 1));
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 30px;
+}
+.player-badge:hover { background: color-mix(in srgb, var(--player-accent) 18%, transparent); }
+.player-badge:focus-visible { outline: 1.5px solid var(--player-accent); outline-offset: -1px; }
+.player-badge:active { transform: scale(.92); }
+.player-source-icon { width: 18px; height: 18px; opacity: .65; transition: opacity calc(180ms * var(--motion-time, 1)); }
+.has-session .player-source-icon { opacity: 1; }
+.player-ring { position: absolute; inset: 0; width: 30px; height: 30px; transform: rotate(-90deg); }
+.player-ring circle { fill: none; stroke-width: 1.5; stroke-linecap: round; }
+.player-ring-track { stroke: currentColor; opacity: .09; }
+.player-ring-value { stroke: currentColor; opacity: .75; transition: stroke-dasharray calc(1000ms * var(--motion-time, 1)) linear; }
+.player-content { position: relative; flex: 1; height: 32px; min-width: 0; overflow: hidden; }
+.player-caption {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1px;
+  opacity: 1;
+  transform: translateY(0);
+  transition: transform calc(300ms * var(--motion-time, 1)) var(--player-spatial), opacity calc(140ms * var(--motion-time, 1)) var(--player-effects);
+}
+.player-track, .player-detail { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.15; }
+.player-track { font-family: "Segoe UI", sans-serif; font-size: 11.5px; font-weight: 600; color: var(--nord-5, var(--nord-5)); }
+.player-detail { font-family: "Segoe UI", sans-serif; font-size: 9px; font-weight: 400; color: var(--player-accent); opacity: .8; }
+.nord-player:not(.has-session) .player-track { color: var(--player-accent); opacity: .65; font-size: 11px; }
+.player-controls {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+  transition: transform calc(300ms * var(--motion-time, 1)) var(--player-spatial), opacity calc(140ms * var(--motion-time, 1)) var(--player-effects);
+}
+.nord-player.has-session:hover .player-caption,
+.nord-player.has-session:has(:focus-visible) .player-caption { transform: translateY(-16px); opacity: 0; }
+.nord-player.has-session:hover .player-controls,
+.nord-player.has-session:has(:focus-visible) .player-controls { transform: translateY(0); opacity: 1; pointer-events: auto; }
+.player-controls button {
+  display: grid;
+  place-items: center;
+  height: 26px;
+  min-width: 28px;
+  padding: 0;
+  border: 0;
+  outline-offset: -1px;
+  border-radius:calc(15px * var(--round, 1));
+  color: var(--player-accent);
+  background: transparent;
+  cursor: pointer;
+  transition: background calc(160ms * var(--motion-time, 1)) var(--player-effects), border-radius calc(350ms * var(--motion-time, 1)) var(--player-spatial), transform calc(200ms * var(--motion-time, 1)) var(--player-spatial);
+}
+.player-controls svg { width: 17px; height: 17px; }
+.player-controls button:hover { background: color-mix(in srgb, var(--player-accent) 16%, transparent); }
+.player-controls button:active { transform: scale(.88); }
+.player-controls button:focus-visible { outline: 1.5px solid var(--player-accent); }
+.player-controls button:disabled { opacity: .4; cursor: default; }
+.player-controls .player-toggle { width: 49px; background: var(--player-accent); color: var(--bg, var(--nord-0)); }
+.player-controls .player-toggle:hover { background: color-mix(in srgb, var(--player-accent) 85%, white); }
+.is-playing .player-controls .player-toggle { border-radius:calc(9px * var(--round, 1)); }
+.player-play-shape, .player-pause-shape { transform-origin: center; transition: opacity calc(150ms * var(--motion-time, 1)), transform calc(250ms * var(--motion-time, 1)) var(--player-spatial); }
+.player-pause-shape { opacity: 0; transform: scale(.65); }
+.is-playing .player-play-shape { opacity: 0; transform: scale(.65); }
+.is-playing .player-pause-shape { opacity: 1; transform: scale(1); }
+.player-playing-mark { display: flex; align-items: center; gap: 2px; height: 12px; width: 10px; flex: 0 0 10px; opacity: .25; }
+.player-playing-mark span { width: 2px; height: 3px; background: currentColor; border-radius:calc(2px * var(--round, 1)); }
+.is-playing .player-playing-mark { opacity: .8; }
+.is-playing .player-playing-mark span:nth-child(1) { height: 6px; }
+.is-playing .player-playing-mark span:nth-child(2) { height: 11px; }
+.is-playing .player-playing-mark span:nth-child(3) { height: 8px; }
+.nord-player:not(.has-session) .player-playing-mark { display: none; }
+.has-error .player-track { color: var(--nord-11, var(--nord-11)); }
+@media (max-width: 1550px) { .nord-player { width: 146px; } }
+@media (prefers-reduced-motion: reduce) {
+  .nord-player, .nord-player * { transition: none !important; animation: none !important; }
+}

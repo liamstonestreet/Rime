@@ -1,0 +1,100 @@
+node_modules
+dist
+.DS_Store
+.env
+.env.*
+!.env.example
+
+# Generated per install by install.ps1 (bridge tokens, local paths)
+src/lib/install-config.generated.ts
+
+# Build output
+*.exe
+control-center/NAudio.dll
+control-center/checks/
+
+# Build dependencies downloaded by install.ps1
+control-center/naudio/
+control-center/refs/
+
+# Local backups made by install.ps1
+backups/
+
+# Local app use is private and is never part of the distributed theme.
+**/spotlight-history.json*
+.build-stamp
+
+# Google OAuth downloads must not be committed; runtime credentials use Windows-protected AppData.
+**/client_secret*.json
+
+# Session goals and recovery journals are local runtime state.
+**/focus-state.json*
+
+# Compiled helpers and generated notification packaging (all rebuilt by installers).
+*.dll
+*.pdb
+*.msix
+*.appx
+*.msixbundle
+*.appxbundle
+*.cer
+*.pfx
+*.p12
+*.key
+/notifications/package/
+/control-center/ical/
+/spotlight/checks/
+/workspace-indicator/checks/
+/runtime/checks/
+
+# Logs, transient files and local editor/OS state.
+*.log
+*.log.*
+*.tmp
+*.pending
+*.bak
+*.previous
+*.migrated
+Thumbs.db
+Desktop.ini
+.vs/
+.idea/
+*.user
+*.suo
+
+# Runtime-only state: keep the shipped default JSON configs, not installed state.
+bridge-tokens.json
+runtime-zebar.txt
+bridge-location.txt
+bar-appearance.json*
+theme-transition.json*
+bar-indicator-state.txt
+task-orders.json*
+wallpaper-browser-state.json*
+spotify-link.json*
+spotlight-apps.json
+spotlight-requests/
+notification-history*
+history.bin*
+frost-*.jpg*
+power-error.txt
+**/client-secret*.json
+**/credentials.json
+**/token.json
+
+# Local diagnostic captures; retain diagnostic/test code and HTML fixtures.
+/checks/diagnostics/
+/checks/*.json
+/checks/**/*.png
+/checks/**/*.jpg
+/checks/**/*.webp
+/workspace-indicator/*-check.txt
+/workspace-indicator/*-result.txt
+/workspace-indicator/preview.png
+/spotlight/preview*.png
+
+# Machine-specific incident notes, rather than public product documentation.
+/docs/crash-2026-11-08.md
+/docs/stability-investigation-20261102.md
+/docs/theme-cleanup-baseline.md
+/docs/personalization-survey.md

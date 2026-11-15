@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "description": "Nord top bar for GlazeWM with a hover control center, Spotlight search, Alt workspace switcher and power menu",
   "tags": ["topbar", "glazewm", "nord", "control-center", "spotlight", "minimal"],
-  "previewImages": ["resources\\preview-image.png"],
-  "repositoryUrl": "",
+  "previewImages": ["resources\\screenshots\\audio.png", "resources\\screenshots\\spotlight.png"],
+  "repositoryUrl": "https://github.com/liamstonestreet/Rime",
   "widgets": [
     {
       "name": "glazewm",

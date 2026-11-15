@@ -1,9 +1,14 @@
-# nord-rice
+# Rime
 
 A Nord-themed top bar for [GlazeWM](https://github.com/glzr-io/glazewm) on Windows, built on [Zebar](https://github.com/glzr-io/zebar), with native helpers for the parts a web widget can't do well.
 
-<!-- Replace with a short screen recording: docs/demo.gif -->
-![nord-rice](resources/preview-image.png)
+Install from Windows PowerShell (once the source is published to `main`):
+
+```powershell
+irm https://raw.githubusercontent.com/liamstonestreet/Rime/main/bootstrap.ps1 | iex
+```
+
+Downloads the source and installs missing core requirements. Existing settings are preserved. See [installation details](docs/easy-install.md) for optional integrations and current testing limits. Internal executable and pack names remain `Nord*` / `nord-rice` for compatibility with existing installs.
 
 ## Features
 
@@ -32,7 +37,7 @@ A Nord-themed top bar for [GlazeWM](https://github.com/glzr-io/glazewm) on Windo
 
 ## Install
 
-For automatic dependency installation and clean defaults, see [easy installation](docs/easy-install.md). From the complete source tree, run `powershell -NoProfile -ExecutionPolicy Bypass -File .\setup.ps1`. The GitHub bootstrap is prepared but needs your published repository URL.
+For automatic dependency installation and clean defaults, see [easy installation](docs/easy-install.md). From this repository folder, run `powershell -NoProfile -ExecutionPolicy Bypass -File .\install.ps1 -CleanDefaults`.
 
 Start GlazeWM once so it creates its config, then in this folder run:
 

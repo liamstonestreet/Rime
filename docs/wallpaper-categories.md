@@ -15,3 +15,9 @@ Last category and per-category selected image paths persist in `wallpaper-browse
 The existing Win+[ / Win+] timed-cycling shortcuts still work in the selected category. The indicator reuses its library snapshot while open, so image/category steps do not rescan the filesystem. Thumbnail requests remain bounded and old category previews are released when switching.
 
 Images are not moved or renamed. Existing wallpaper fades, synchronized theme transitions and optional blurred lock-screen updates run only when a selection is applied.
+# Bundled library and folder selection
+
+Fresh installs include the 44 images in `presets/wallpapers`, organized into Elden Ring, Ghibli, Nature, and Space. The installer copies them to `%USERPROFILE%\.glzr\zebar\nord-rice\presets\wallpapers` and preserves an existing user's selected library. Existing installed images are never overwritten by this copy.
+
+In **Configure → Wallpaper library**, choose **Choose folder** to select any existing library, **Open folder** to add images to the current library, or **Use presets** to select the bundled library. Close and reopen the wallpaper indicator to use a newly selected folder. JPG/JPEG, PNG and BMP are supported. Subfolders become categories; **All** includes all categories. Relative paths in `wallpapers.json` are resolved against the installed pack, not the terminal's working directory.
+

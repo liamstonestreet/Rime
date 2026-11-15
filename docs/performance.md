@@ -8,7 +8,7 @@ Capture after installing, opening/closing the usual overlays, switching a few wa
 powershell -ExecutionPolicy Bypass -File .\nord-custom\checks\memory-snapshot.ps1 -OutFile .\nord-custom\checks\memory-after-optimization.json
 ```
 
-The live, pre-update baseline is saved at `checks/memory-before-optimization.json`. It measured roughly 1.24 GB private committed memory for the rice tree at capture time, including approximately 461 MB for CC, 145 MB for the workspace indicator and 134 MB for Spotlight. This is a point-in-time baseline, not a controlled leak measurement. Source changes have not been installed into those processes during testing.
+The historical pre-update baseline measured roughly 1.24 GB private committed memory for the rice tree at capture time, including approximately 461 MB for CC, 145 MB for the workspace indicator and 134 MB for Spotlight. Its machine-specific snapshot was removed during repository cleanup. This was a point-in-time baseline, not a controlled leak measurement.
 
 Changes:
 

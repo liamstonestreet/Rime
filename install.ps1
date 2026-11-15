@@ -230,12 +230,23 @@ foreach ($entry in $settings.GetEnumerator()) {
       Write-Utf8 $dest (ConvertTo-Json $neutral -Depth 6); continue
     }
     if ($entry.Key -eq 'launch-apps.json') { Write-Utf8 $dest '{"apps":[]}'; continue }
-    if ($entry.Key -eq 'wallpapers.json') { Write-Utf8 $dest '{"folder":"%USERPROFILE%/Pictures/Wallpapers"}'; continue }
+    if ($entry.Key -eq 'wallpapers.json') { Write-Utf8 $dest '{"folder":"presets/wallpapers"}'; continue }
   }
   $old = if ($MigrateFrom) { Join-Path $MigrateFrom $entry.Key } else { $null }
   if ($old -and (Test-Path $old)) { Copy-Item $old $dest; Note "Migrated $($entry.Key)" } else { Copy-Item (Join-Path $repo $entry.Value) $dest }
 }
 Copy-Item (Join-Path $PackDir 'rice-widgets.json') (Join-Path $live 'rice-widgets.json') -Force
+
+# Copy bundled wallpaper categories without overwriting user-edited installed images.
+$presetSource=Join-Path $repo 'presets\wallpapers'
+if(Test-Path -LiteralPath $presetSource){
+  $presetSource=[IO.Path]::GetFullPath($presetSource)
+  foreach($image in Get-ChildItem -LiteralPath $presetSource -Recurse -File){
+    $relative=$image.FullName.Substring($presetSource.Length).TrimStart('\')
+    $destination=Join-Path (Join-Path $PackDir 'presets\wallpapers') $relative
+    if(-not (Test-Path -LiteralPath $destination)){New-Item -ItemType Directory -Force (Split-Path $destination) | Out-Null;Copy-Item -LiteralPath $image.FullName -Destination $destination}
+  }
+}
 
 # Spotlight's app catalog comes from the Windows Start menu (no arbitrary commands).
 $shellCatalog = New-Object -ComObject Shell.Application

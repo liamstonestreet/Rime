@@ -20,7 +20,12 @@ sealed class WallpaperSettings {
  public string previous {get;set;}
  public string hold {get;set;}     // legacy field; indicator-keys.json now owns the hold key
  // Not a property: the JSON reader matches names case-insensitively and would bind "folder" to it.
- public string ImageFolder(){return Environment.ExpandEnvironmentVariables(folder??"");}
+ public string ImageFolder(){var path=Environment.ExpandEnvironmentVariables(folder??"");return Path.IsPathRooted(path)?path:Path.GetFullPath(Path.Combine(AppCatalog.Folder,path));}
+ public static void SetFolder(string folder){
+  var full=Path.GetFullPath(Environment.ExpandEnvironmentVariables(folder));if(!Directory.Exists(full))throw new DirectoryNotFoundException("Choose an existing wallpaper folder.");
+  var path=Path.Combine(AppCatalog.Folder,"wallpapers.json");var serializer=new JavaScriptSerializer();var value=File.Exists(path)?serializer.Deserialize<Dictionary<string,object>>(File.ReadAllText(path)):new Dictionary<string,object>();
+  value["folder"]=full;var temp=path+".tmp";File.WriteAllText(temp,serializer.Serialize(value));if(File.Exists(path))File.Replace(temp,path,path+".previous");else File.Move(temp,path);
+ }
 
  public static WallpaperSettings Load(){
   WallpaperSettings s=null;

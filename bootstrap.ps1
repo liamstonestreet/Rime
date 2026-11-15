@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param(
-  [Parameter(Mandatory=$true)][ValidatePattern('^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$')][string]$Repository,
+  [ValidatePattern('^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$')][string]$Repository='liamstonestreet/Rime',
   [ValidatePattern('^[A-Za-z0-9_.-]+$')][string]$Ref='main',
   [switch]$Notifications,
   [switch]$Spicetify
@@ -20,5 +20,9 @@ $source=Get-ChildItem -LiteralPath $stage -Directory | Select-Object -First 1
 $installer=Join-Path $source.FullName 'nord-custom\install.ps1'
 if (-not (Test-Path -LiteralPath $installer)) { $installer=Join-Path $source.FullName 'install.ps1' }
 if (-not (Test-Path -LiteralPath $installer)) { throw 'The GitHub archive does not contain the nord-rice installer.' }
-& $installer -CleanDefaults -Notifications:$Notifications -Spicetify:$Spicetify
+$arguments=@('-NoProfile','-ExecutionPolicy','Bypass','-File',$installer,'-CleanDefaults')
+if($Notifications){$arguments+='-Notifications'}
+if($Spicetify){$arguments+='-Spicetify'}
+& powershell.exe @arguments
+if($LASTEXITCODE -ne 0){throw "Rime installation failed (exit $LASTEXITCODE). Source retained at $($source.FullName) for retry."}
 Write-Host "Source retained for updates: $($source.FullName)" -ForegroundColor Green

@@ -150,7 +150,7 @@ static class RiceLayout {
   off.Click+=delegate{frameSlider.Value=0;};
   showFrame();
   panel.Children.Add(Hint("Sets the screen-edge frame thickness. Off removes the frame; tiled-window gaps follow its size."));
-  panel.Children.Add(LockScreenControl());panel.Children.Add(BatchAppsView.Build());
+  panel.Children.Add(WallpaperFolderControl());panel.Children.Add(LockScreenControl());panel.Children.Add(BatchAppsView.Build());
   panel.Children.Add(source);showSource();
   // The wallpaper is read in the background; refresh the caption once it is known.
   var refresh=new System.Windows.Threading.DispatcherTimer{Interval=TimeSpan.FromSeconds(2)};refresh.Tick+=delegate{showSource();};
@@ -158,6 +158,17 @@ static class RiceLayout {
   return panel;
  }
  internal static Button Button(string text,string name){return new Button{Content=text,Name=name,FontSize=12,Padding=new Thickness(8,7,8,7),BorderThickness=new Thickness(1),BorderBrush=B("Border"),Background=B("Raised"),Margin=new Thickness(0,0,5,0)};}
+ static FrameworkElement WallpaperFolderControl(){
+  var panel=new StackPanel{Margin=new Thickness(0,12,0,12)};panel.Children.Add(new TextBlock{Text="Wallpaper library",FontSize=15});
+  var path=new TextBlock{Text=WallpaperSettings.Load().ImageFolder(),FontSize=11,Foreground=B("Muted"),TextWrapping=TextWrapping.Wrap,Margin=new Thickness(0,5,0,8)};panel.Children.Add(path);
+  var row=new StackPanel{Orientation=Orientation.Horizontal};panel.Children.Add(row);
+  var choose=Button("Choose folder","WallpaperChooseFolder");var open=Button("Open folder","WallpaperOpenFolder");var presets=Button("Use presets","WallpaperUsePresets");row.Children.Add(choose);row.Children.Add(open);row.Children.Add(presets);
+  Action<string> select=folder=>{try{WallpaperSettings.SetFolder(folder);path.Text=WallpaperSettings.Load().ImageFolder();}catch(Exception error){path.Text=error.Message;}};
+  choose.Click+=delegate{using(var dialog=new System.Windows.Forms.FolderBrowserDialog{Description="Choose your wallpaper library. Subfolders become categories.",SelectedPath=WallpaperSettings.Load().ImageFolder()})if(dialog.ShowDialog()==System.Windows.Forms.DialogResult.OK)select(dialog.SelectedPath);};
+  open.Click+=delegate{try{var folder=WallpaperSettings.Load().ImageFolder();Directory.CreateDirectory(folder);System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(folder){UseShellExecute=true});}catch(Exception error){path.Text=error.Message;}};
+  presets.Click+=delegate{select(Path.Combine(AppCatalog.Folder,"presets","wallpapers"));};
+  panel.Children.Add(Hint("Add JPG, PNG or BMP images here. Subfolders become categories; All includes every category. Folder changes apply the next time you open the wallpaper indicator."));return panel;
+ }
  /// <summary>The Configure tab: appearance, layout, window management and keybinds.</summary>
  public static StackPanel BuildAppearance(){var panel=new StackPanel{Margin=new Thickness(0,14,0,0)};panel.Children.Add(Appearance());panel.Children.Add(BuildLayout());panel.Children.Add(GlazeTab.Build());panel.Children.Add(IndicatorKeyControl.Build());return panel;}
 

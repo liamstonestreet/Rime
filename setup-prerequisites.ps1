@@ -8,13 +8,13 @@ function Find-RiceExecutable([string]$name, [string[]]$candidates) {
   return $candidates | Where-Object { Test-Path -LiteralPath $_ } | Select-Object -First 1
 }
 function Ensure-RicePrerequisites {
-  if (-not [Environment]::Is64BitOperatingSystem -or $env:OS -ne 'Windows_NT') { throw 'nord-rice requires 64-bit Windows 10/11.' }
+  if (-not [Environment]::Is64BitOperatingSystem -or $env:OS -ne 'Windows_NT') { throw 'Rime requires 64-bit Windows 10/11.' }
   if (-not (Test-Path "$env:WINDIR\Microsoft.NET\Framework64\v4.0.30319\csc.exe")) { throw '.NET Framework compiler is missing. Enable .NET Framework 4.8 in Windows Features, then rerun this command.' }
   Refresh-SetupPath
   $requirements = @(
     @{Name='npm.cmd'; Id='OpenJS.NodeJS.LTS'; Paths=@("$env:ProgramFiles\nodejs\npm.cmd")},
-    @{Name='glazewm.exe'; Id='glzr-io.GlazeWM'; Paths=@("$env:ProgramFiles\glzr.io\GlazeWM\glazewm.exe", "$env:LOCALAPPDATA\Programs\glzr.io\GlazeWM\glazewm.exe")},
-    @{Name='zebar.exe'; Id='glzr-io.Zebar'; Paths=@("$env:ProgramFiles\glzr.io\Zebar\zebar.exe", "$env:LOCALAPPDATA\Programs\glzr.io\Zebar\zebar.exe")}
+    @{Name='glazewm.exe'; Id='glzr-io.glazewm'; Paths=@("$env:ProgramFiles\glzr.io\GlazeWM\glazewm.exe", "$env:LOCALAPPDATA\Programs\glzr.io\GlazeWM\glazewm.exe")},
+    @{Name='zebar.exe'; Id='glzr-io.zebar'; Paths=@("$env:ProgramFiles\glzr.io\Zebar\zebar.exe", "$env:LOCALAPPDATA\Programs\glzr.io\Zebar\zebar.exe")}
   )
   foreach ($requirement in $requirements) {
     if (Find-RiceExecutable $requirement.Name $requirement.Paths) { Note "$($requirement.Id): already installed"; continue }

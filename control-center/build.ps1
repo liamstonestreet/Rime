@@ -77,5 +77,6 @@ if ($Checks) {
 } else {
   $target = @('/target:winexe', "/out:$PSScriptRoot\NordControlCenter.exe")
 }
-& "$fx\csc.exe" @facades /nologo /nowarn:1701 /platform:x64 /optimize+ @target /reference:System.Drawing.dll /reference:System.Security.dll /reference:System.Net.Http.dll /reference:System.Windows.Forms.dll /reference:System.Xaml.dll /reference:System.Web.Extensions.dll "/reference:$PSScriptRoot\NAudio.dll" "/reference:$fx\System.Runtime.WindowsRuntime.dll" @winmd @refs @sources
+. "$PSScriptRoot\..\shared\Invoke-Csc.ps1"
+Invoke-Csc "$fx\csc.exe" (@($facades) + @('/nologo', '/nowarn:1701', '/platform:x64', '/optimize+') + @($target) + @('/reference:System.Drawing.dll', '/reference:System.Security.dll', '/reference:System.Net.Http.dll', '/reference:System.Windows.Forms.dll', '/reference:System.Xaml.dll', '/reference:System.Web.Extensions.dll', "/reference:$PSScriptRoot\NAudio.dll", "/reference:$fx\System.Runtime.WindowsRuntime.dll") + @($winmd) + @($refs) + @($sources))
 if ($LASTEXITCODE -ne 0) { throw 'Control center build failed' }

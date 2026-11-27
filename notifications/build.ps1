@@ -8,5 +8,6 @@ $refs+=@('WindowsBase','PresentationCore','PresentationFramework') | ForEach-Obj
 $source=if($Probe){'NotificationProbe.cs'}else{'NordNotificationListener.cs'}
 $name=if($Probe){'NotificationProbe.exe'}else{'NordNotificationListener.exe'}
 $target=if($Probe){'/target:exe'}else{'/target:winexe'}
-& "$fx\csc.exe" /nologo /nowarn:1701 $target /platform:x64 /optimize+ "/out:$PSScriptRoot\$name" /reference:System.Xaml.dll /reference:System.Web.Extensions.dll "/reference:$fx\System.Runtime.WindowsRuntime.dll" @refs (Join-Path $PSScriptRoot $source) (Join-Path $PSScriptRoot '..\shared\NotificationItem.cs')
+. "$PSScriptRoot\..\shared\Invoke-Csc.ps1"
+Invoke-Csc "$fx\csc.exe" (@('/nologo','/nowarn:1701',$target,'/platform:x64','/optimize+',"/out:$PSScriptRoot\$name",'/reference:System.Xaml.dll','/reference:System.Web.Extensions.dll',"/reference:$fx\System.Runtime.WindowsRuntime.dll") + @($refs) + @((Join-Path $PSScriptRoot $source),(Join-Path $PSScriptRoot '..\shared\NotificationItem.cs')))
 if($LASTEXITCODE -ne 0){throw 'Notification companion build failed'}

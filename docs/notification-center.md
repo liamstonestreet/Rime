@@ -11,7 +11,7 @@ Escape, Close, clicking outside, or activating the bell/shortcut again dismisses
 Install the companion once from the repository:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\nord-custom\install.ps1 -Notifications
+powershell -ExecutionPolicy Bypass -File .\install.ps1 -Notifications
 ```
 
 Open the notification panel, choose **Connect Windows**, then **Allow Windows access**. Windows presents its notification-access prompt. The connection status appears near the top. The companion is a per-user MSIX; its signing key stays non-exportable in CurrentUser/My. Its specific public certificate needs LocalMachine/TrustedPeople trust once, requiring administrator access. The installer prints the exact import command if needed; it never adds a root CA or exports a private key. Windows SDK packaging tools are required to build it.

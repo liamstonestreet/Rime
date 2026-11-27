@@ -2,7 +2,7 @@
 
 For the proposed incremental cleanup of the window and static services, see [Control Center cleanup plan](control-center-cleanup-plan.md).
 
-This guide describes the current active `nord-custom` implementation, including the code added and adapted during this session. It does not claim authorship of Zebar, GlazeWM, NAudio, Windows APIs, or bundled dependencies. Historical experiments, backups, vendored reference code, binaries, generated screenshots, and dependency files are not additional application layers.
+This guide describes the current active Rime implementation, including the code added and adapted during this session. It does not claim authorship of Zebar, GlazeWM, NAudio, Windows APIs, or bundled dependencies. Historical experiments, backups, vendored reference code, binaries, generated screenshots, and dependency files are not additional application layers.
 
 ## The running system
 
@@ -56,7 +56,7 @@ Many services are static classes. The frontend uses functions, Solid signals and
 
 ## Bar: source files
 
-Paths in the following tables are relative to `nord-custom/`.
+Paths in the following tables are relative to the Rime repository root.
 
 | File | Responsibility |
 |---|---|

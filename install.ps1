@@ -21,7 +21,7 @@ param(
   [string]$BtopPath,
   # A previous install folder to copy settings and bridge tokens from (e.g. an older pack).
   [string]$MigrateFrom,
-  # Where backups go. Default: ..\backups when it exists (WindowsRice layout), else .\backups.
+  # Where backups go. Default: ..\backups when it exists (parent-folder layout), else .\backups.
   [string]$BackupDir,
   # Leave ~/.glzr/glazewm/config.yaml untouched (you then add the entries from the README yourself).
   [switch]$SkipGlazeConfig,
@@ -38,6 +38,8 @@ param(
   [switch]$Rebuild
 )
 $ErrorActionPreference = 'Stop'
+# Progress rendering makes Invoke-WebRequest/Expand-Archive many times slower in Windows PowerShell 5.1.
+$ProgressPreference = 'SilentlyContinue'
 $installMutex = New-Object Threading.Mutex($false, 'Local\NordRiceInstall')
 $installOwned = $false
 try {

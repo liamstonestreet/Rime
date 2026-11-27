@@ -5,7 +5,7 @@
 Capture after installing, opening/closing the usual overlays, switching a few wallpapers and allowing the shell to settle:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\nord-custom\checks\memory-snapshot.ps1 -OutFile .\nord-custom\checks\memory-after-optimization.json
+powershell -ExecutionPolicy Bypass -File .\checks\memory-snapshot.ps1 -OutFile .\checks\memory-after-optimization.json
 ```
 
 The historical pre-update baseline measured roughly 1.24 GB private committed memory for the rice tree at capture time, including approximately 461 MB for CC, 145 MB for the workspace indicator and 134 MB for Spotlight. Its machine-specific snapshot was removed during repository cleanup. This was a point-in-time baseline, not a controlled leak measurement.

@@ -6,8 +6,6 @@ From an extracted source folder, run this single command in normal **64-bit Wind
 powershell -NoProfile -ExecutionPolicy Bypass -File .\install.ps1 -CleanDefaults
 ```
 
-If publishing only the `nord-custom` folder as the repository root, use `install.ps1 -CleanDefaults` instead. The root `setup.ps1` is the friendly entry point for the complete source tree.
-
 Setup detects existing applications and installs missing Node.js LTS, GlazeWM and Zebar through WinGet. If WinGet is missing, it attempts Microsoft's `Microsoft.WinGet.Client` repair flow. Windows may display UAC prompts for application installation. Network access and permission to install applications are required; organizational policies and unsupported Windows editions can block setup. Git, Visual Studio, Spotify, Discord, Obsidian and Windhawk are not required. Windows must supply .NET Framework 4.8 and its 64-bit compiler.
 
 Setup starts GlazeWM once if needed to generate its default configuration, then merges the rice into that config with backups. Existing rice settings are preserved. On a new account, workspaces have no assigned apps, `/openall` starts empty, wallpapers use the bundled `presets/wallpapers` library, and personal quick actions are disabled. Configure → Wallpaper library lets you choose another folder, open the current folder to add images, or return to the presets. Existing wallpaper directories are preserved on updates.

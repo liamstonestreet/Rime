@@ -12,9 +12,9 @@ Source backup: `backups/source-snapshots/performance-20261110-143431` (repositor
 
 ## Validation and limits
 
-Production bar, Control Center, Spotlight and workspace indicator builds; targeted TypeScript checking; native CC/Spotlight suites; browser theme interpolation test; taskbar reconciliation/motion checks with `node --conditions=browser nord-custom/scripts/taskbar-checks.mjs`.
+Production bar, Control Center, Spotlight and workspace indicator builds; targeted TypeScript checking; native CC/Spotlight suites; browser theme interpolation test; taskbar reconciliation/motion checks with `node --conditions=browser scripts/taskbar-checks.mjs`.
 
-`node nord-custom/scripts/theme-performance-checks.mjs` verifies retained CSS-rule identity, interpolation, final colors, focus-theme precedence and removal of stale overrides in headless Edge. Native suites use synthetic windows/adapters, not live clicks or wallpaper switches. DPAPI cases require a loaded user profile and are skipped in this sandbox.
+`node scripts/theme-performance-checks.mjs` verifies retained CSS-rule identity, interpolation, final colors, focus-theme precedence and removal of stale overrides in headless Edge. Native suites use synthetic windows/adapters, not live clicks or wallpaper switches. DPAPI cases require a loaded user profile and are skipped in this sandbox.
 
 Pre-install working-set snapshot: CC 367 MiB, Spotlight 143 MiB, workspace indicator 116 MiB, Zebar parent 75 MiB. This excludes WebView2 child processes and is not a system total or measured improvement. Working set varies with usage and Windows memory management. No working-set trimming or forced garbage collections were introduced.
 
